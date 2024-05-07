@@ -46,6 +46,15 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define NUMAR MO(LAYER_NUMAR)
 #define PT_SLSH LT(LAYER_POINTER, KC_SLSH)
 
+#define MT_SFE LSFT_T(KC_E)
+#define MT_SFN LSFT_T(KC_N)
+#define MT_CTA LCTL_T(KC_A)
+#define MT_CTR LCTL_T(KC_R)
+#define MT_ALI LALT_T(KC_I)
+#define MT_ALT LALT_T(KC_T)
+#define MT_GUO LGUI_T(KC_O)
+#define MT_GUS LGUI_T(KC_S)
+
 #define PT_U LT(LAYER_POINTER, KC_U)
 #define PT_D LT(LAYER_POINTER, KC_D)
 #define CKC_EUR RALT(KC_E)     // €
@@ -89,9 +98,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
         KC_ESC,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,       KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_PMNS,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-        KC_TAB,    KC_X,    KC_V,    KC_L,    KC_C,    KC_W,       KC_K,    KC_H,    KC_G,    KC_F,    KC_Q, KC_MINS,
+       KC_LSFT,    KC_X,    KC_V,    KC_L,    KC_C,    KC_W,       KC_K,    KC_H,    KC_G,    KC_F,    KC_Q, KC_MINS,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       KC_LSFT,    PT_U,    KC_I,    KC_A,    KC_E,    KC_O,       KC_S,    KC_N,    KC_R,    KC_T,    PT_D,    KC_Z,
+        KC_TAB,    PT_U,  MT_ALI,  MT_CTA,  MT_SFE,  MT_GUO,     MT_GUS,  MT_SFN,  MT_CTR,  MT_ALT,    PT_D,    KC_Z,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        KC_LCTL, KC_LBRC, KC_SCLN, KC_QUOT,    KC_P,    KC_Y,       KC_B,    KC_M, KC_COMM,  KC_DOT,    KC_J, KC_LGUI,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
