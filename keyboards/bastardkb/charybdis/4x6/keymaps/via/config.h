@@ -16,6 +16,10 @@
  */
 #pragma once
 
+// Mod-Tap defines
+#define QUICK_TAP_TERM 0
+#define PERMISSIVE_HOLD
+
 #ifdef VIA_ENABLE
 /* VIA configuration. */
 #    define DYNAMIC_KEYMAP_LAYER_COUNT 4
