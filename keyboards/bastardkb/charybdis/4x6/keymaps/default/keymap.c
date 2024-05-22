@@ -22,6 +22,7 @@
 
 enum charybdis_keymap_layers {
     LAYER_BASE = 0,
+    LAYER_GAME,
     LAYER_SYMBL,
     LAYER_NUMAR,
     LAYER_POINTER,
@@ -42,6 +43,13 @@ static uint16_t auto_pointer_layer_timer = 0;
 #    endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD
 #endif     // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 
+const uint16_t PROGMEM combo_base_to_game[] = {KC_PMNS, KC_MINS, KC_0, COMBO_END};
+const uint16_t PROGMEM combo_game_to_base[] = {KC_PMNS, KC_MINS, KC_Z, COMBO_END};
+combo_t key_combos[] = {
+    COMBO(combo_base_to_game, TO(LAYER_GAME)),
+    COMBO(combo_game_to_base, TO(LAYER_BASE)),
+};
+
 #define SYMBL MO(LAYER_SYMBL)
 #define NUMAR MO(LAYER_NUMAR)
 #define PT_SLSH LT(LAYER_POINTER, KC_SLSH)
@@ -54,6 +62,11 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define MT_ALT LALT_T(KC_T)
 #define MT_GUO LGUI_T(KC_O)
 #define MT_GUS LGUI_T(KC_S)
+
+#define MT_SF4 LSFT_T(KC_KP_4)
+#define MT_CT5 LCTL_T(KC_KP_5)
+#define MT_AL6 LALT_T(KC_KP_6)
+#define MT_GUML LGUI_T(KC_MPLY)
 
 #define PT_U LT(LAYER_POINTER, KC_U)
 #define PT_D LT(LAYER_POINTER, KC_D)
@@ -109,13 +122,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //                            ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
+  [LAYER_GAME] = LAYOUT(
+  // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
+        KC_ESC,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,       KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_PMNS,
+  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
+          KC_Z,    KC_X,    KC_V,    KC_L,    KC_C,    KC_W,       KC_K,    KC_H,    KC_G,    KC_F,    KC_Q, KC_MINS,
+  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
+        KC_TAB,    KC_U,    KC_I,    KC_A,    KC_E,    KC_O,     MT_GUS,  MT_SFN,  MT_CTR,  MT_ALT,    PT_D,    KC_Z,
+  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
+       KC_LCTL, KC_LBRC, KC_SCLN, KC_QUOT,    KC_P,    KC_Y,       KC_B,    KC_M, KC_COMM,  KC_DOT,    KC_J, KC_LGUI,
+  // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
+                                   KC_LALT, KC_SPC,   SYMBL,      SYMBL, KC_BSPC,
+                                            KC_ENT,   NUMAR,      NUMAR
+  //                            ╰───────────────────────────╯ ╰──────────────────╯
+  ),
+
   [LAYER_SYMBL] = LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
        RGB_TOG, RGB_MOD,RGB_RMOD, XXXXXXX, XXXXXXX,  KC_EQL,    CKC_GRV, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-        KC_F24, CKC_EUR, CKC_UNS, CKC_LBK, CKC_RBK,  KC_GRV,    CKC_EXC, KC_NUBS, CKC_RTR, CKC_EQL, CKC_AMP, CKC_PAR,
+       _______, CKC_EUR, CKC_UNS, CKC_LBK, CKC_RBK,  KC_GRV,    CKC_EXC, KC_NUBS, CKC_RTR, CKC_EQL, CKC_AMP, CKC_PAR,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       _______, CKC_BSL, CKC_SLH, CKC_LBC, CKC_RBC, CKC_AST,    CKC_QST, CKC_LPR, CKC_RPR, KC_SLSH, CKC_CLN,  CKC_AT,
+        KC_F24, CKC_BSL, CKC_SLH, CKC_LBC, CKC_RBC, CKC_AST,    CKC_QST, CKC_LPR, CKC_RPR, KC_SLSH, CKC_CLN,  CKC_AT,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        _______, KC_BSLS, CKC_DLR, CKC_PIP, CKC_TLD, CKC_GRV,    KC_RBRC, CKC_PRC, CKC_QOT, CKC_APO, CKC_SMC, _______,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
@@ -130,7 +158,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        _______, KC_PGUP, KC_BSPC,   KC_UP,  KC_DEL, KC_PGDN,    KC_MNXT, KC_KP_7, KC_KP_8, KC_KP_9, KC_PPLS, KC_PMNS,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       _______, KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT,  KC_END,    KC_MPLY, KC_KP_4, KC_KP_5, KC_KP_6, KC_PDOT, KC_COMM,
+       _______, KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT,  KC_END,    MT_GUML,  MT_SF4,  MT_CT5,  MT_AL6,  KC_DOT, KC_PDOT,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        _______,  KC_ESC,  KC_TAB,  KC_INS,  KC_ENT, KC_UNDO,    KC_MPRV, KC_KP_1, KC_KP_2, KC_KP_3, KC_PAST, KC_PSLS,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
@@ -182,16 +210,43 @@ void matrix_scan_user(void) {
     }
 }
 #    endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+#endif
 
-#    ifdef CHARYBDIS_AUTO_SNIPING_ON_LAYER
 layer_state_t layer_state_set_user(layer_state_t state) {
+#ifdef POINTING_DEVICE_ENABLE
+#    ifdef CHARYBDIS_AUTO_SNIPING_ON_LAYER
     charybdis_set_pointer_sniping_enabled(layer_state_cmp(state, CHARYBDIS_AUTO_SNIPING_ON_LAYER));
-    return state;
-}
 #    endif // CHARYBDIS_AUTO_SNIPING_ON_LAYER
 #endif     // POINTING_DEVICE_ENABLE
 
 #ifdef RGB_MATRIX_ENABLE
 // Forward-declare this helper function since it is defined in rgb_matrix.c.
+    switch (get_highest_layer(state)) {
+    case LAYER_BASE:
+        rgblight_sethsv (131, 255, 100);
+        break;
+    case LAYER_GAME:
+        rgblight_sethsv (195, 218, 100);
+        break;
+    case LAYER_SYMBL:
+        rgblight_sethsv (170, 255, 100);
+        break;
+    case LAYER_NUMAR:
+        rgblight_sethsv (0,  0, 0);
+        break;
+    case LAYER_POINTER:
+        rgblight_sethsv (42, 255, 100);
+        break;
+    default: //  for any other layers, or the default layer
+        rgblight_sethsv (0,  0, 100);
+        break;
+    }
+
+#endif
+  return state;
+}
+
+#ifdef RGB_MATRIX_ENABLE
 void rgb_matrix_update_pwm_buffers(void);
 #endif
+
