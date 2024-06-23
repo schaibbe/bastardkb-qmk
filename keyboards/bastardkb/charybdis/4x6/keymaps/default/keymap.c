@@ -171,11 +171,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
        QK_BOOT,  EE_CLR, XXXXXXX, RGB_HUD, RGB_SAD, RGB_VAD,    RGB_VAI, RGB_SAI, RGB_HUI, XXXXXXX, QK_BOOT,  EE_CLR,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       _______, XXXXXXX, XXXXXXX,  KC_NUM, DPI_MOD, S_D_MOD,    S_D_MOD, DPI_MOD,  KC_NUM, XXXXXXX, XXXXXXX, _______,
+       _______, XXXXXXX, SNIPING,  KC_NUM, DPI_MOD, S_D_MOD,    S_D_MOD, DPI_MOD,  KC_NUM, SNIPING, XXXXXXX, _______,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        _______, _______, DRGSCRL, KC_WBAK, KC_WFWD, XXXXXXX,    XXXXXXX, KC_WBAK, KC_WFWD, DRGSCRL, _______, _______,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       _______, _______, DRGSCRL, SNIPING, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, SNIPING, DRGSCRL, XXXXXXX, _______,
+        KC_F13,  KC_F14,  KC_F15,  KC_F16,  KC_F17,  KC_F18,     KC_F19,  KC_F20,  KC_F21,  KC_F22,  KC_F23,  KC_F24,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
                                   KC_BTN2, KC_BTN1, KC_BTN3,    KC_BTN3, KC_BTN1,
                                            DRGSCRL, KC_BTN2,    KC_BTN2
